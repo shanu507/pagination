@@ -1,0 +1,44 @@
+<div class="container" class="mtp10">
+    <h6><b>Search</b></h6>
+    <div class="form-group">
+    <input type="text" [(ngModel)]="searchText" class="from-control" name="search" placeholder= "&#61442;Search with title">
+</div>
+
+<table class="table table-striped" [mfData]="data" #mf="mfDataTable">
+    <thead>
+    <tr>
+        <th style="width: 20%">
+            <mfDefaultSorter by="title">Title</mfDefaultSorter>
+
+        </th>
+        <th style="width: 50%">
+            <mfDefaultSorter by="url">Url</mfDefaultSorter>
+        </th>
+        <th style="width: 10%">
+            <mfDefaultSorter by="created_at">Created at</mfDefaultSorter>
+        </th>
+        <th style="width: 20%">
+            <mfDefaultSorter by="author">Author</mfDefaultSorter>
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let data of totalAngularPackages | filter:searchText | paginate:{ itemsPerPage:5, currentPage:p}">
+        <td>{{data.title}}</td>
+        <td>{{data.url}}</td>
+        <td>{{data.created_at}}</td>
+        <td>{{data.author | uppercase}}</td>
+    </tr>
+    </tbody>
+    <tfoot>
+    <tr>
+        <ul class="pagination">  
+            <pagination-controls (pageChange)="p = $event"  maxSize="5"></pagination-controls>  
+            </ul>  
+            
+           
+    
+         </tr>
+    </tfoot>
+</table>
+</div>
