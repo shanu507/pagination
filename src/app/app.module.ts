@@ -9,6 +9,7 @@ import { PopupComponent } from './popup/popup.component';
 import { ServiceService } from './service/service.service';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import {NgxPaginationModule} from 'ngx-pagination';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 
 import {DataTableModule} from "angular-6-datatable";
 import { HttpClientModule } from '@angular/common/http';
@@ -33,7 +34,8 @@ import {MatPaginatorModule} from '@angular/material';
     NgxPaginationModule
   ],
   entryComponents:[PopupComponent],
-  providers: [ServiceService],
+  providers: [ServiceService, { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
